@@ -1,0 +1,22 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "liri-node-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manuel-Padilla/liri-node-app.git"
+  },
+  "author": "Manuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manuel-Padilla/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/Manuel-Padilla/liri-node-app#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0"
+  }
+}
