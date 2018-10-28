@@ -79,6 +79,60 @@ function searchConcert(searchValue) {
   });
 };
 
+// spotify-this-song function
+function searchSong(searchValue) {
+
+  // set default to The Sign if no value is given
+  if (searchValue == "") {
+    searchValue = "The Sign Ace of Base ";
+  }
+
+  // Access Spotify keys
+  let spotify = new Spotify(keys.spotify);
+
+  // reset to empty value
+  var searchLimit = "";
+
+  // This portion will allow the user to input the number of results to be returned
+  if (isNaN(parseInt(process.argv[3])) == false) {
+      searchLimit = process.argv[3];
+
+      console.log("\nNumber of songs requested: " + searchLimit);
+
+      // Resets the searchValue if search limit is empty
+      searchValue = "";
+      for (var i = 4; i < process.argv.length; i++) {
+          searchValue += process.argv[i] + " ";
+      };
+
+  } else {
+      // informs the user that they may input more than one result to be returned.
+      console.log("\nAdd the number of results you would like returned after spotify-this-song.\nex. node.js spotify-this-song 4 I'm Alright");
+      searchLimit = 1;
+  }
+
+  // search spotify with given values
+  spotify.search({
+    type: 'track',
+    query: searchValue,
+    limit: searchLimit
+}, function (err, response) {
+
+    let songResp = response.tracks.items;
+
+    for (var i = 0; i < songResp.length; i++) {
+      
+      // show the results in the terminal
+      console.log("\n=============== " + searchValue.toUpperCase() + "(" + `${(i + 1)}` + ")" + " ================\n");
+      console.log(("Artist: " + songResp[i].artists[0].name));
+      console.log(("Song title: " + songResp[i].name));
+      console.log(("Album name: " + songResp[i].album.name));
+      console.log(("Preview link: " + songResp[i].preview_url));
+      console.log("\n================================\n");
+    }
+  })
+};
+
 
 
 
