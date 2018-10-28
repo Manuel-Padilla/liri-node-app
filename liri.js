@@ -42,11 +42,12 @@ switch (command) {
     console.log("4. Random search: node liri.js do-what-it-says.\n");
 };
 
+
 // concert-this function
 function searchConcert(searchValue) {
   let bands = keys.bands;
 
-  // set default to Lady Gaga if no value is given
+  // set default to "Lady Gaga" if no value is given
   if (searchValue == "") {
       searchValue = "Lady Gaga";
   }
@@ -55,10 +56,10 @@ function searchConcert(searchValue) {
 
   request(queryUrl, function (err, response, body) {
 
-      //No results found
+      // results not found
       if (JSON.parse(body).Error == "Concerts not found for " + searchValue) {
 
-          //Display no results to terminal
+          // display no results
           console.log("\nResults not found for " + searchValue + ". Please try another artist.\r\n")
 
       } else {
@@ -73,16 +74,15 @@ function searchConcert(searchValue) {
           console.log("Venue Location: " + concertBody[0].venue.city + ", " + concertBody[0].venue.region);
           console.log("Date of Event: " + moment(concertBody[0].datetime).format(dateFormat));
           console.log("\n================================\n");
-
-      
       };
   });
 };
 
+
 // spotify-this-song function
 function searchSong(searchValue) {
 
-  // set default to The Sign if no value is given
+  // set default to "The Sign" if no value is given
   if (searchValue == "") {
     searchValue = "The Sign Ace of Base ";
   }
@@ -134,6 +134,57 @@ function searchSong(searchValue) {
 };
 
 
+// movie-this search function
+function searchMovie(searchValue) {
+  let omdb = keys.omdb;
+
+  // set default to "Mr. Nobody" if no value is given
+  if (searchValue == "") {
+      searchValue = "Mr. Nobody";
+  }
+
+  var queryUrl = "http://www.omdbapi.com/?t=" + searchValue.trim() + "&y=&plot=short&apikey=" + omdb;
+
+  request(queryUrl, function (err, response, body) {
+
+      if (JSON.parse(body).Error == 'Movie not found!') {
+
+          // no results is displayed to terminal
+          console.log("\nNo results found for " + searchValue + ". Please search for another title.\n")
+
+      } else {
+
+          let movieBody = JSON.parse(body);
+
+          // display the first portion of results
+          console.log("\n========== " + searchValue.toUpperCase() + "==========\n");
+          console.log("Movie Title: " + movieBody.Title);
+          console.log("Year: " + movieBody.Year);
+          console.log("IMDB rating: " + movieBody.imdbRating);
+
+
+          // no Rotten Tomatoes Rating
+          if (movieBody.Ratings.length < 2) {
+
+              // display message to terminal
+              console.log("No Rotten Tomatoes Rating for this movie.")
+
+          } else {
+
+              // show ratings
+              console.log("Rotten Tomatoes Rating: " + movieBody.Ratings[1].Value);
+
+          }
+
+          // show the remaining information
+          console.log("Country: " + movieBody.Country);
+          console.log("Language: " + movieBody.Language);
+          console.log("Plot: " + movieBody.Plot);
+          console.log("Actors: " + movieBody.Actors);
+          console.log("\n================================\n");
+      };
+  });
+};
 
 
 
