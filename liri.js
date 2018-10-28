@@ -42,6 +42,43 @@ switch (command) {
     console.log("4. Random search: node liri.js do-what-it-says.\n");
 };
 
+// concert-this function
+function searchConcert(searchValue) {
+  let bands = keys.bands;
+
+  // set default to Lady Gaga if no value is given
+  if (searchValue == "") {
+      searchValue = "Lady Gaga";
+  }
+
+  let queryUrl = "https://rest.bandsintown.com/artists/" + searchValue.trim() + "/events?app_id=" + bands + "&date=upcoming";
+
+  request(queryUrl, function (err, response, body) {
+
+      //No results found
+      if (JSON.parse(body).Error == "No upcoming concerts for " + searchValue) {
+
+          //Display no results to terminal
+          console.log("\nNo results found for " + searchValue + ". Please try another artist.\r\n")
+
+      } else {
+
+          let concertBody = JSON.parse(body);
+          let dateFormat = 'dddd, MMMM Do YYYY [at] h:mm A'; // date displayed in the format of Thursday, April 12th 2018 at 6:29 PM
+
+          // display result information
+          console.log("\n========== " + searchValue.toUpperCase() + "==========\n");
+          console.log("Artist Name: " + searchValue);
+          console.log("Venue Name: " + concertBody[0].venue.name);
+          console.log("Venue Location: " + concertBody[0].venue.city + ", " + concertBody[0].venue.region);
+          console.log("Date of Event: " + moment(concertBody[0].datetime).format(dateFormat));
+          console.log("\n================================\n");
+
+      
+      };
+  });
+};
+
 
 
 
