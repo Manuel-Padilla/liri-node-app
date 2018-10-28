@@ -36,10 +36,12 @@ switch (command) {
 
   default:
     console.log("\nYour command was not recognized. Please try one of the following commands.\n");
-    console.log("1. Upcoming concerts: node liri.js concert-this *Name of artist*\n Example: node liri.js concert-this .\n");
-    console.log("2. Songs: node liri.js spotify-this-song *number of results* *song title*\n Example: node liri.js spotify-this-song 3 I'm Alright.\n");
-    console.log("3. Movie title: node liri.js movie-this *movie title*\ Example: node liri.js movie-this Braveheart.\n");
+    console.log("1. Upcoming concerts: node liri.js concert-this *Name of artist*\n ex. node liri.js concert-this .\n");
+    console.log("2. Songs: node liri.js spotify-this-song *number of results* *song title*\n ex. node liri.js spotify-this-song 3 I'm Alright.\n");
+    console.log("3. Movie title: node liri.js movie-this *movie title*\n ex. node liri.js movie-this Braveheart.\n");
     console.log("4. Random search: node liri.js do-what-it-says.\n");
 };
+
+
 
 
