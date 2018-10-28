@@ -187,6 +187,25 @@ function searchMovie(searchValue) {
 };
 
 
+// do-what-it-says function
+function randomSearch() {
+
+  // read random.txt file
+  fs.readFile("random.txt", "utf8", function (err, data) {
+
+    // after the comma, text is split into an array
+    var randomArray = data.split(",");
+
+    // based on what index[0] on random.txt is set, liri will execute the following
+    if (randomArray[0] == "spotify-this-song") {
+      searchSong(randomArray[1]);
+    } 
+    
+    else if (randomArray[0] == "movie-this") {
+      searchMovie(randomArray[1]);
+    }
+  });
+};
 
 
 
