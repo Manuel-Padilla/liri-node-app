@@ -68,7 +68,7 @@ function searchConcert(searchValue) {
           let dateFormat = 'dddd, MMMM Do YYYY [at] h:mm A';
 
           // display result information
-          console.log("\n========== " + searchValue.toUpperCase() + "==========\n");
+          console.log("\n========== " + searchValue.toUpperCase() + " ==========\n");
           console.log("Artist Name: " + searchValue);
           console.log("Venue Name: " + concertBody[0].venue.name);
           console.log("Venue Location: " + concertBody[0].venue.city + ", " + concertBody[0].venue.region);
