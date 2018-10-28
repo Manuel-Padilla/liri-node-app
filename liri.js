@@ -56,15 +56,15 @@ function searchConcert(searchValue) {
   request(queryUrl, function (err, response, body) {
 
       //No results found
-      if (JSON.parse(body).Error == "No upcoming concerts for " + searchValue) {
+      if (JSON.parse(body).Error == "Concerts not found for " + searchValue) {
 
           //Display no results to terminal
-          console.log("\nNo results found for " + searchValue + ". Please try another artist.\r\n")
+          console.log("\nResults not found for " + searchValue + ". Please try another artist.\r\n")
 
       } else {
 
           let concertBody = JSON.parse(body);
-          let dateFormat = 'dddd, MMMM Do YYYY [at] h:mm A'; // date displayed in the format of Thursday, April 12th 2018 at 6:29 PM
+          let dateFormat = 'dddd, MMMM Do YYYY [at] h:mm A';
 
           // display result information
           console.log("\n========== " + searchValue.toUpperCase() + "==========\n");
@@ -78,6 +78,10 @@ function searchConcert(searchValue) {
       };
   });
 };
+
+
+
+
 
 
 
